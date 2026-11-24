@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f8fa"><title>Pranova — Order Dashboard</title>
+<style>
+:root{--bg:#f7f8fa;--panel:#fff;--ink:#182230;--muted:#718096;--line:#e8edf2;--navy:#172b4d;--blue:#315efb;--green:#14804a;--amber:#a65b00;--red:#bd3030}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.shell{max-width:1440px;margin:auto;min-height:100vh;display:grid;grid-template-columns:240px 1fr}.side{background:#fff;border-right:1px solid var(--line);padding:25px 18px;display:flex;flex-direction:column}.logo{font-weight:850;font-size:22px;letter-spacing:-1px;padding:5px 10px 30px}.logo span{color:var(--blue)}.side-label{font-size:10px;letter-spacing:1.5px;color:#9aa4b2;font-weight:800;padding:10px}.nav{padding:12px;border-radius:10px;background:#edf2ff;color:#254bd2;font-size:13px;font-weight:750}.side-note{margin-top:auto;padding:14px;background:#f6f8fc;border-radius:12px;color:var(--muted);font-size:11px;line-height:1.5}.main{min-width:0}.top{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px}.top small{color:var(--muted)}.user{font-size:12px;font-weight:700}.content{padding:30px 32px;max-width:1200px;margin:auto}.heading{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:25px}.heading h1{font-size:27px;margin:0 0 6px;letter-spacing:-.8px}.heading p{color:var(--muted);font-size:13px;margin:0}.pill{border-radius:30px;background:#e9f7ef;color:#167447;padding:7px 11px;font-size:11px;font-weight:750}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:22px}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px}.stat{padding:18px}.stat-label{font-size:11px;color:var(--muted);font-weight:650}.stat-value{font-size:27px;font-weight:800;margin-top:9px;letter-spacing:-.7px}.stat-sub{font-size:10px;color:#98a2b3;margin-top:5px}.panel{padding:20px;margin-bottom:18px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.panel h2{font-size:15px;margin:0}.panel-head p{font-size:11px;color:var(--muted);margin:5px 0 0}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:#fff;border-radius:30px;padding:8px 12px;font-size:11px;color:#657184}.filter.active{background:#172b4d;color:#fff;border-color:#172b4d}.orders{display:grid;gap:12px}.order{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;grid-template-columns:1fr auto;gap:12px}.order-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.order-id{font-size:13px;font-weight:850}.meta{font-size:11px;color:var(--muted)}.status{font-size:10px;font-weight:800;border-radius:30px;padding:6px 9px;background:#fff3d8;color:#936000}.status.preparing{background:#eaf1ff;color:#2853c7}.status.ready{background:#e8f7ee;color:#167447}.status.completed{background:#edf0f4;color:#566273}.status.rejected{background:#ffeded;color:#ae3030}.order-items{font-size:12px;line-height:1.8;margin-top:11px;color:#475467}.order-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}.amount{font-weight:850;font-size:15px}.actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.action{border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:8px;font-size:10px;font-weight:750}.action.primary{background:#172b4d;color:#fff;border-color:#172b4d}.action.danger{color:var(--red)}.empty,.loading,.error{padding:40px 15px;text-align:center;color:var(--muted);font-size:13px}.login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px}.login{width:min(390px,100%);background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 15px 50px #1c2b4510}.login h1{font-size:22px;margin:0 0 7px}.login p{font-size:12px;color:var(--muted);line-height:1.5}.login label{display:block;font-size:11px;font-weight:750;margin:14px 0 6px}.login input{width:100%;padding:12px;border:1px solid var(--line);border-radius:9px;outline:none}.login button{width:100%;border:0;background:#172b4d;color:#fff;padding:12px;border-radius:9px;margin-top:17px;font-weight:750}.login-error{color:var(--red);font-size:11px}.hidden{display:none!important}
+@media(max-width:900px){.shell{grid-template-columns:190px 1fr}.stats{grid-template-columns:repeat(2,1fr)}.content{padding:22px 18px}.top{padding:0 18px}}
+@media(max-width:620px){.shell{display:block}.side{display:none}.top{height:62px;padding:0 15px}.content{padding:20px 13px}.heading h1{font-size:23px}.stats{gap:9px}.stat{padding:13px}.stat-value{font-size:22px}.panel{padding:14px}.order{grid-template-columns:1fr}.actions{justify-content:flex-start}.order-bottom{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div id="login-screen" class="login-wrap">
+  <form class="login" id="login-form">
+    <div class="logo" style="padding:0 0 20px">pranova<span>.</span></div>
+    <h1>Restaurant Orders</h1><p>Sign in with the Firebase Authentication owner account to view and manage incoming orders.</p>
+    <label>Email address</label><input id="email" type="email" autocomplete="username" required placeholder="owner@example.com">
+    <label>Password</label><input id="password" type="password" autocomplete="current-password" required placeholder="Your password">
+    <button id="login-button">Sign in</button><div id="login-error" class="login-error"></div>
+  </form>
+</div>
+<div id="app-screen" class="shell hidden">
+  <aside class="side"><div class="logo">pranova<span>.</span></div><div class="side-label">RESTAURANT WORKSPACE</div><div class="nav">▣ &nbsp; Live Orders</div><div class="side-note">Orders sync live from Firestore. Keep this dashboard open to receive new orders.</div></aside>
+  <main class="main">
+    <header class="top"><div><strong>Order Management</strong><br><small>Restaurant · Daily Brew Demo</small></div><div class="user" id="user-email"></div><button class="action" id="logout">Sign out</button></header>
+    <div class="content">
+      <div class="heading"><div><h1>Orders</h1><p>Manage customer orders as they arrive.</p></div><span class="pill">● Live connection</span></div>
+      <section class="stats">
+        <div class="stat"><div class="stat-label">TOTAL ORDERS</div><div class="stat-value" id="total-orders">—</div><div class="stat-sub">All orders received</div></div>
+        <div class="stat"><div class="stat-label">NEW / PENDING</div><div class="stat-value" id="pending-orders">—</div><div class="stat-sub">Needs attention</div></div>
+        <div class="stat"><div class="stat-label">IN PREPARATION</div><div class="stat-value" id="preparing-orders">—</div><div class="stat-sub">Currently being prepared</div></div>
+        <div class="stat"><div class="stat-label">TODAY'S SALES</div><div class="stat-value" id="today-sales">₹0</div><div class="stat-sub">Based on orders received today</div></div>
+      </section>
+      <section class="panel"><div class="panel-head"><div><h2>Incoming orders</h2><p>Newest orders appear first. Status changes are saved to Firebase.</p></div><div class="filters" id="filters"><button class="filter active" data-filter="All">All</button><button class="filter" data-filter="New">New</button><button class="filter" data-filter="Accepted">Accepted</button><button class="filter" data-filter="Preparing">Preparing</button><button class="filter" data-filter="Ready">Ready</button><button class="filter" data-filter="Completed">Completed</button></div></div><div id="orders" class="orders"><div class="loading">Waiting for Firebase connection…</div></div></section>
+    </div>
+  </main>
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, collection, onSnapshot, query, orderBy, doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+// Paste the SAME Firebase web config used in the customer menu.
+const firebaseConfig = {
+  apiKey: "AIzaSyApOmQKtMcpCUozMBOpDN8d5PIdOI_v-0U",
+  authDomain: "pranova-digitalmenu.firebaseapp.com",
+  projectId: "pranova-digitalmenu",
+  storageBucket: "pranova-digitalmenu.firebasestorage.app",
+  messagingSenderId: "830883695016",
+  appId: "1:830883695016:web:52941b18675bd16d0df59d"
+};
+const RESTAURANT_ID = "daily-brew-demo";
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const loginScreen=document.getElementById("login-screen"),appScreen=document.getElementById("app-screen");
+const ordersEl=document.getElementById("orders");
+let allOrders=[],activeFilter="All",unsubscribeOrders=null,knownIds=new Set(),initialSnapshot=true;
+
+document.getElementById("login-form").addEventListener("submit",async e=>{e.preventDefault();const btn=document.getElementById("login-button"),err=document.getElementById("login-error");btn.disabled=true;btn.textContent="Signing in…";err.textContent="";try{await signInWithEmailAndPassword(auth,document.getElementById("email").value.trim(),document.getElementById("password").value)}catch(error){err.textContent=error.message||"Unable to sign in"}finally{btn.disabled=false;btn.textContent="Sign in"}});
+document.getElementById("logout").onclick=()=>signOut(auth);
+onAuthStateChanged(auth,user=>{if(user){loginScreen.classList.add("hidden");appScreen.classList.remove("hidden");document.getElementById("user-email").textContent=user.email||"Owner";listenOrders()}else{if(unsubscribeOrders)unsubscribeOrders();unsubscribeOrders=null;appScreen.classList.add("hidden");loginScreen.classList.remove("hidden")}});
+function listenOrders(){if(unsubscribeOrders)unsubscribeOrders();const ref=collection(db,"restaurants",RESTAURANT_ID,"orders");unsubscribeOrders=onSnapshot(query(ref,orderBy("createdAt","desc")),snap=>{allOrders=snap.docs.map(d=>({id:d.id,...d.data()}));if(!initialSnapshot){snap.docChanges().forEach(change=>{if(change.type==="added"&&!knownIds.has(change.doc.id)){notifyNewOrder(change.doc.data())}})}snap.docs.forEach(d=>knownIds.add(d.id));initialSnapshot=false;render()},error=>{ordersEl.innerHTML='<div class="error">Could not read orders. Check Firestore rules and owner UID. '+escapeHtml(error.message)+'</div>'})}
+function notifyNewOrder(order){try{if("Notification"in window&&Notification.permission==="granted")new Notification("New Pranova order",{body:`${order.customer?.name||"Customer"} · ₹${order.totalAmount||0}`});}catch(e){}}
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function money(n){return "₹"+Number(n||0).toLocaleString("en-IN")}
+function render(){const today=new Date();const sameDay=t=>{if(!t)return false;const d=t.toDate?t.toDate():new Date(t);return d.getFullYear()===today.getFullYear()&&d.getMonth()===today.getMonth()&&d.getDate()===today.getDate()};document.getElementById("total-orders").textContent=allOrders.length;document.getElementById("pending-orders").textContent=allOrders.filter(o=>["New","Accepted"].includes(o.status)).length;document.getElementById("preparing-orders").textContent=allOrders.filter(o=>o.status==="Preparing").length;document.getElementById("today-sales").textContent=money(allOrders.filter(o=>sameDay(o.createdAt)&&o.status!=="Rejected").reduce((s,o)=>s+Number(o.totalAmount||0),0));const visible=activeFilter==="All"?allOrders:allOrders.filter(o=>o.status===activeFilter);ordersEl.innerHTML=visible.length?visible.map(orderCard).join(""):'<div class="empty">No '+(activeFilter==="All"?"":activeFilter.toLowerCase())+' orders yet.</div>';ordersEl.querySelectorAll("[data-status]").forEach(b=>b.onclick=()=>setStatus(b.dataset.id,b.dataset.status));ordersEl.querySelectorAll("[data-details]").forEach(b=>b.onclick=()=>showDetails(b.dataset.details))}
+function orderCard(o){const date=o.createdAt?.toDate?o.createdAt.toDate().toLocaleString("en-IN"):"Just now";const items=(o.items||[]).map(i=>`${escapeHtml(i.name)} × ${Number(i.quantity||1)} — ${money(i.price*Number(i.quantity||1))}`).join("<br>");const status=String(o.status||"New");const buttons=status==="New"?`<button class="action primary" data-id="${o.id}" data-status="Accepted">Accept</button><button class="action danger" data-id="${o.id}" data-status="Rejected">Reject</button>`:status==="Accepted"?`<button class="action primary" data-id="${o.id}" data-status="Preparing">Start preparing</button>`:status==="Preparing"?`<button class="action primary" data-id="${o.id}" data-status="Ready">Mark ready</button>`:status==="Ready"?`<button class="action primary" data-id="${o.id}" data-status="Completed">Complete</button>`:"";return `<article class="order"><div><div class="order-top"><span class="order-id">#${escapeHtml(o.id.slice(-6).toUpperCase())}</span><span class="status ${status.toLowerCase()}">${escapeHtml(status)}</span><span class="meta">${escapeHtml(date)}</span></div><div class="meta" style="margin-top:8px">${escapeHtml(o.customer?.name||"Guest")} · ${escapeHtml(o.customer?.phone||"No phone")} · Table ${escapeHtml(o.tableNumber||"—")}</div><div class="order-items">${items||"No item details"}</div><div class="order-bottom"><span class="amount">${money(o.totalAmount)}</span><span class="meta">${(o.items||[]).reduce((s,i)=>s+Number(i.quantity||1),0)} item(s)</span></div></div><div class="actions">${buttons}<button class="action" data-details="${o.id}">Details</button></div></article>`}
+async function setStatus(id,status){try{await updateDoc(doc(db,"restaurants",RESTAURANT_ID,"orders",id),{status,updatedAt:serverTimestamp()})}catch(e){alert("Could not update status: "+e.message)}}
+function showDetails(id){const o=allOrders.find(x=>x.id===id);if(!o)return;alert(`Order #${id.slice(-6).toUpperCase()}\\nCustomer: ${o.customer?.name||"Guest"}\\nPhone: ${o.customer?.phone||"—"}\\nTable: ${o.tableNumber||"—"}\\nTotal: ${money(o.totalAmount)}\\nStatus: ${o.status}`)}
+document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;activeFilter=b.dataset.filter;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));render()});
+if("Notification"in window&&Notification.permission==="default"){document.addEventListener("click",()=>Notification.requestPermission(),{once:true})}
+</script>
+</body></html>
